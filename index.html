@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Venus Niebres Taylor | Official Artist Site</title>
+  <meta name="description" content="Official website for artist Venus Niebres Taylor. Listen on Spotify, watch videos, see releases, and connect." />
+  <meta property="og:title" content="Venus Niebres Taylor" />
+  <meta property="og:description" content="Official artist website for Venus Niebres Taylor." />
+  <meta property="og:type" content="website" />
+  <link rel="icon" href="public/assets/favicon.svg" />
+  <link rel="stylesheet" href="public/styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav">
+      <a class="brand" href="#home">Venus Niebres Taylor</a>
+      <button class="nav-toggle" aria-label="Toggle navigation">☰</button>
+      <div class="nav-links">
+        <a href="#music">Music</a>
+        <a href="#videos">Videos</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="home">
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">Official Artist Website</p>
+        <h1>Venus Niebres Taylor</h1>
+        <p class="tagline">Music, stories, and releases from Venus — all in one place.</p>
+        <div class="hero-actions">
+          <a class="btn primary" href="#music">Listen Now</a>
+          <a class="btn secondary" href="#videos">Watch Videos</a>
+        </div>
+      </div>
+      <div class="hero-card">
+        <div class="album-placeholder">
+          <span>V</span>
+        </div>
+        <p>Replace this card with an album cover or artist photo.</p>
+      </div>
+    </section>
+
+    <section id="music" class="section">
+      <div class="section-heading">
+        <p class="eyebrow">Streaming</p>
+        <h2>Listen on Spotify</h2>
+        <p>Paste Venus’s Spotify album, track, playlist, or artist embed URL inside <code>public/config.js</code>.</p>
+      </div>
+      <div id="spotify-grid" class="embed-grid"></div>
+    </section>
+
+    <section id="videos" class="section alt">
+      <div class="section-heading">
+        <p class="eyebrow">Music Videos</p>
+        <h2>Videos</h2>
+        <p>When music videos are ready, add YouTube embed links inside <code>public/config.js</code>.</p>
+      </div>
+      <div id="video-grid" class="video-grid"></div>
+    </section>
+
+    <section id="about" class="section about-section">
+      <div>
+        <p class="eyebrow">About</p>
+        <h2>About Venus</h2>
+      </div>
+      <p>
+        Venus Niebres Taylor is an artist sharing music rooted in love, memory, family, and personal story.
+        Update this section with a stronger artist bio, press highlights, and release history as the brand grows.
+      </p>
+    </section>
+
+    <section id="contact" class="section contact-section">
+      <div class="section-heading">
+        <p class="eyebrow">Connect</p>
+        <h2>Booking, Press, and Socials</h2>
+      </div>
+      <div class="contact-grid">
+        <a href="mailto:booking@example.com">booking@example.com</a>
+        <a href="https://open.spotify.com/" target="_blank" rel="noreferrer">Spotify</a>
+        <a href="https://www.youtube.com/" target="_blank" rel="noreferrer">YouTube</a>
+        <a href="https://www.instagram.com/" target="_blank" rel="noreferrer">Instagram</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>© <span id="year"></span> Venus Niebres Taylor. All rights reserved.</p>
+  </footer>
+
+  <script src="public/config.js"></script>
+  <script src="public/main.js"></script>
+</body>
+</html>
