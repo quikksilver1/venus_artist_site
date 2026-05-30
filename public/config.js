@@ -7,9 +7,9 @@ window.SITE_CONFIG = {
   ],
   videos: [
     {
-      title: "Music video coming soon",
-      src: ""
+      title: "San Antonio - Austin | Official Music Video",
+      src: "assets/videos/san-antonio-austin-official-music-video.mp4",
+      type: "mp4"
     }
-  
   ]
 };

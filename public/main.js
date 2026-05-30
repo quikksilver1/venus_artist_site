@@ -19,10 +19,27 @@ function createSpotifyEmbed(item) {
 function createVideoEmbed(item) {
   const card = document.createElement('article');
   card.className = 'video-card';
+
   if (!item.src) {
     card.innerHTML = `<div class="video-placeholder">Coming Soon</div><h3>${item.title}</h3>`;
     return card;
   }
+
+  const isMp4 = item.type === 'mp4' || item.src.toLowerCase().endsWith('.mp4');
+
+  if (isMp4) {
+    card.innerHTML = `
+      <div class="video-frame local-video-frame">
+        <video controls preload="metadata" playsinline>
+          <source src="${item.src}" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+      <h3>${item.title}</h3>
+    `;
+    return card;
+  }
+
   card.innerHTML = `
     <div class="video-frame"><iframe src="${item.src}" title="${item.title}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe></div>
     <h3>${item.title}</h3>
