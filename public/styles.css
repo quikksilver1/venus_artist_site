@@ -244,6 +244,28 @@ background:var(--card);
   background:#000;
 }
 
+.video-description{
+  margin:10px 0 0;
+  color:var(--muted);
+  line-height:1.6;
+}
+
+.youtube-watch-link{
+  display:inline-flex;
+  margin-top:14px;
+  padding:11px 16px;
+  border-radius:999px;
+  background:#ff0000;
+  color:#fff;
+  font-weight:700;
+  text-decoration:none;
+}
+
+.youtube-watch-link:hover{
+  transform:translateY(-1px);
+  filter:brightness(1.08);
+}
+
 .video-placeholder{
   min-height:220px;
   display:grid;
