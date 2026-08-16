@@ -6,7 +6,8 @@ A zero-cost, Vercel-ready artist website for **Venus Niebres Taylor**.
 
 - Spotify embeds for artist, album, playlist, or tracks
 - Future music video embeds from YouTube
-- Artist bio section
+- Professional About page and separate Her Journey page
+- Recent highlights for press coverage and career milestones
 - Contact/social links
 - Static deployment to Vercel through GitHub
 - Optional Python local preview server
