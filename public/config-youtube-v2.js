@@ -1,7 +1,15 @@
 window.SITE_CONFIG = {
   spotifyEmbeds: [
     {
-      title: "Featured Release",
+      title: "Kahit Bawal",
+      src: "https://www.youtube.com/embed/u0SPRkUFV9Y?rel=0&modestbranding=1",
+      watchUrl: "https://www.youtube.com/watch?v=u0SPRkUFV9Y&list=RDu0SPRkUFV9Y&start_radio=1",
+      height: 360,
+      image: "assets/kahit-bawal-feature.png",
+      platform: "YouTube"
+    },
+    {
+      title: "More Music by Venus Niebres Taylor",
       src: "https://open.spotify.com/embed/artist/5fOmvEI1sSuV0SXDN4XdDH"
     }
   ],

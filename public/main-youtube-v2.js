@@ -20,10 +20,27 @@ document.getElementById('year').textContent = new Date().getFullYear();
 
 function createSpotifyEmbed(item) {
   const card = document.createElement('article');
-  card.className = 'embed-card';
+  card.className = item.image ? 'embed-card embed-card-featured' : 'embed-card';
+  const height = Number.isFinite(item.height) ? item.height : 352;
+
+  if (item.image) {
+    card.innerHTML = `
+      <div class="spotify-feature">
+        <img class="spotify-feature-art" src="${item.image}" alt="${item.title} promotional artwork" loading="eager">
+        <div class="spotify-feature-player">
+          <p class="eyebrow">Full Song on ${item.platform || 'Spotify'}</p>
+          <h3>${item.title}</h3>
+          <iframe class="featured-song-player" style="border-radius:12px" src="${item.src}" width="100%" height="${height}" frameborder="0" allowfullscreen="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" loading="lazy" title="${item.title} on ${item.platform || 'Spotify'}"></iframe>
+          ${item.watchUrl ? `<a class="youtube-watch-link" href="${item.watchUrl}" target="_blank" rel="noopener noreferrer">Listen directly on YouTube</a>` : ''}
+        </div>
+      </div>
+    `;
+    return card;
+  }
+
   card.innerHTML = `
     <h3>${item.title}</h3>
-    <iframe style="border-radius:12px" src="${item.src}" width="100%" height="352" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+    <iframe style="border-radius:12px" src="${item.src}" width="100%" height="${height}" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="${item.title} on Spotify"></iframe>
   `;
   return card;
 }
