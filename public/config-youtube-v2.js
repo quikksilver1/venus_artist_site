@@ -2,8 +2,8 @@ window.SITE_CONFIG = {
   spotifyEmbeds: [
     {
       title: "Kahit Bawal",
-      src: "https://www.youtube.com/embed/u0SPRkUFV9Y?rel=0&modestbranding=1",
-      watchUrl: "https://www.youtube.com/watch?v=u0SPRkUFV9Y&list=RDu0SPRkUFV9Y&start_radio=1",
+      src: "https://www.youtube.com/embed/LJq7zmhj9es?rel=0&modestbranding=1",
+      watchUrl: "https://www.youtube.com/watch?v=LJq7zmhj9es",
       height: 360,
       image: "assets/kahit-bawal-feature.png",
       platform: "YouTube"
