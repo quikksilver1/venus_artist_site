@@ -26,7 +26,10 @@ function createSpotifyEmbed(item) {
   if (item.image) {
     card.innerHTML = `
       <div class="spotify-feature">
-        <img class="spotify-feature-art" src="${item.image}" alt="${item.title} promotional artwork" loading="eager">
+        <button class="feature-art-link" type="button" aria-label="Play ${item.title}">
+          <img class="spotify-feature-art" src="${item.image}" alt="${item.title} promotional artwork" loading="eager">
+          <span class="feature-art-play" aria-hidden="true">▶ Play Video</span>
+        </button>
         <div class="spotify-feature-player">
           <p class="eyebrow">Full Song on ${item.platform || 'Spotify'}</p>
           <h3>${item.title}</h3>
@@ -35,6 +38,18 @@ function createSpotifyEmbed(item) {
         </div>
       </div>
     `;
+
+    const artworkButton = card.querySelector('.feature-art-link');
+    const featuredPlayer = card.querySelector('.featured-song-player');
+
+    artworkButton?.addEventListener('click', () => {
+      const playUrl = new URL(item.src, window.location.href);
+      playUrl.searchParams.set('autoplay', '1');
+      playUrl.searchParams.set('playsinline', '1');
+      featuredPlayer.src = playUrl.toString();
+      featuredPlayer.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+
     return card;
   }
 

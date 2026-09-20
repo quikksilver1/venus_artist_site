@@ -1,18 +1,13 @@
 window.SITE_CONFIG = {
   spotifyEmbeds: [
-    {
-      title: "Kahit Bawal",
-      src: "https://www.youtube.com/embed/LJq7zmhj9es?rel=0&modestbranding=1",
-      watchUrl: "https://www.youtube.com/watch?v=LJq7zmhj9es",
-      height: 360,
-      image: "assets/kahit-bawal-feature.png",
-      platform: "YouTube"
-    },
-    {
-      title: "More Music by Venus Niebres Taylor",
-      src: "https://open.spotify.com/embed/artist/5fOmvEI1sSuV0SXDN4XdDH"
-    }
-  ],
+  {
+    title: "Kahit Bawal",
+    src: "https://www.youtube.com/embed/LJq7zmhj9es?rel=0",
+    watchUrl: "https://www.youtube.com/watch?v=LJq7zmhj9es",
+    height: 360,
+    platform: "YouTube"
+  }
+],
 
   videos: [
     {
