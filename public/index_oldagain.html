@@ -429,33 +429,6 @@ Venus Niebres Taylor
 
 <script src="config-youtube-v2.js"></script>
 <script src="main-youtube-v2.js"></script>
-<script>
-// Ad links can use ?autoplay=1, ?play=kahit-bawal, ?video=kahit-bawal,
-// ?watch=kahit-bawal, or #kahit-bawal.
-(function () {
-  const params = new URLSearchParams(window.location.search);
-  const truthy = (value) => /^(1|true|yes|kahit[-_ ]?bawal)$/i.test(value || '');
-  const fromAdLink = ['autoplay', 'play', 'video', 'watch', 'kahitbawal', 'kahit-bawal']
-    .some((key) => truthy(params.get(key))) ||
-    /^#(?:kahit[-_]?bawal|watch-kahit-bawal)$/i.test(window.location.hash);
-  if (!fromAdLink) return;
-
-  const player = document.querySelector('#spotify-grid .featured-song-player');
-  if (!player) return;
-
-  // Browser autoplay policies generally require muted playback until the viewer unmutes.
-  const playerUrl = new URL(player.getAttribute('src'), window.location.href);
-  playerUrl.searchParams.set('autoplay', '1');
-  playerUrl.searchParams.set('mute', '1');
-  playerUrl.searchParams.set('playsinline', '1');
-  player.setAttribute('loading', 'eager');
-  player.src = playerUrl.toString();
-
-  requestAnimationFrame(() => {
-    player.scrollIntoView({ behavior: 'instant', block: 'center' });
-  });
-})();
-</script>
 
 </body>
 </html>
