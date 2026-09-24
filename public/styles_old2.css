@@ -236,47 +236,6 @@ background:var(--card);
   gap:24px;
 }
 
-.follow-actions{
-display:flex;
-align-items:center;
-flex-wrap:wrap;
-gap:12px 20px;
-margin-top:24px;
-}
-
-.follow-actions p{
-margin:0;
-color:var(--muted);
-font:14px/1.5 Arial,sans-serif;
-}
-
-.youtube-subscribe{
-background:#e62117;
-color:#fff;
-white-space:nowrap;
-}
-
-.spotify-artist-card{
-padding:22px;
-border-radius:28px;
-background:var(--card);
-border:1px solid var(--line);
-box-shadow:0 20px 60px rgba(0,0,0,.35);
-}
-
-.spotify-artist-card iframe{
-display:block;
-border:0;
-border-radius:12px;
-}
-
-.spotify-follow{
-display:inline-block;
-margin-top:20px;
-background:#1db954;
-color:#071b0c;
-}
-
 .embed-card,
 .video-card{
   padding:22px;
@@ -360,6 +319,23 @@ color:#071b0c;
 .spotify-feature-player h3{
   margin:8px 0 22px;
   font-size:clamp(34px,5vw,54px);
+}
+
+#kahit-bawal{
+  scroll-margin-top:90px;
+}
+
+.featured-sound-button{
+  display:inline-block;
+  margin:0 0 16px;
+  padding:12px 22px;
+  border:0;
+  border-radius:999px;
+  background:#ff006e;
+  color:#fff;
+  font:inherit;
+  font-weight:700;
+  cursor:pointer;
 }
 
 .spotify-feature-player iframe{
