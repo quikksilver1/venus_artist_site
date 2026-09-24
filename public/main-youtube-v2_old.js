@@ -1,5 +1,4 @@
 const config = window.SITE_CONFIG || { spotifyEmbeds: [], videos: [] };
-const isKahitBawalAd = new URLSearchParams(window.location.search).get('play') === 'kahit-bawal';
 
 const navToggle = document.querySelector('.nav-toggle');
 const navLinks = document.querySelector('.nav-links');
@@ -21,19 +20,35 @@ document.getElementById('year').textContent = new Date().getFullYear();
 
 function createSpotifyEmbed(item) {
   const card = document.createElement('article');
-  card.className = 'embed-card embed-card-featured';
+  card.className = item.image ? 'embed-card embed-card-featured' : 'embed-card';
   const height = Number.isFinite(item.height) ? item.height : 352;
 
-  if (item.title === 'Kahit Bawal') {
+  if (item.image) {
     card.innerHTML = `
-      <div class="spotify-feature-player">
+      <div class="spotify-feature">
+        <button class="feature-art-link" type="button" aria-label="Play ${item.title}">
+          <img class="spotify-feature-art" src="${item.image}" alt="${item.title} promotional artwork" loading="eager">
+          <span class="feature-art-play" aria-hidden="true">▶ Play Video</span>
+        </button>
+        <div class="spotify-feature-player">
           <p class="eyebrow">Full Song on ${item.platform || 'Spotify'}</p>
           <h3>${item.title}</h3>
-          ${isKahitBawalAd ? '<button class="featured-sound-button" type="button">Tap to play with sound</button>' : ''}
-          <iframe class="featured-song-player" style="border-radius:12px" src="${item.src}" width="100%" height="${height}" frameborder="0" allowfullscreen="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" loading="${isKahitBawalAd ? 'eager' : 'lazy'}" title="${item.title} on ${item.platform || 'Spotify'}"></iframe>
+          <iframe class="featured-song-player" style="border-radius:12px" src="${item.src}" width="100%" height="${height}" frameborder="0" allowfullscreen="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" loading="lazy" title="${item.title} on ${item.platform || 'Spotify'}"></iframe>
           ${item.watchUrl ? `<a class="youtube-watch-link" href="${item.watchUrl}" target="_blank" rel="noopener noreferrer">Listen directly on YouTube</a>` : ''}
+        </div>
       </div>
     `;
+
+    const artworkButton = card.querySelector('.feature-art-link');
+    const featuredPlayer = card.querySelector('.featured-song-player');
+
+    artworkButton?.addEventListener('click', () => {
+      const playUrl = new URL(item.src, window.location.href);
+      playUrl.searchParams.set('autoplay', '1');
+      playUrl.searchParams.set('playsinline', '1');
+      featuredPlayer.src = playUrl.toString();
+      featuredPlayer.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
 
     return card;
   }
@@ -107,65 +122,5 @@ function extractYouTubeId(url = '') {
 
 document.getElementById('spotify-grid').append(...config.spotifyEmbeds.map(createSpotifyEmbed));
 document.getElementById('video-grid').append(...config.videos.map(createVideoEmbed));
-
-if (isKahitBawalAd) {
-  const target = document.getElementById('kahit-bawal');
-  const iframe = document.querySelector('.featured-song-player');
-  const soundButton = document.querySelector('.featured-sound-button');
-  // The anchor still works if scripting or YouTube's API is blocked in an in-app browser.
-  requestAnimationFrame(() => target?.scrollIntoView({ block: 'start' }));
-
-  if (iframe && soundButton) {
-    let player;
-    let wantsSound = false;
-    let triedMutedFallback = false;
-    soundButton.addEventListener('click', () => {
-      wantsSound = true;
-      if (player) {
-        player.unMute();
-        player.playVideo();
-      } else {
-        // A direct tap can start the ordinary embed if the API has not loaded.
-        const url = new URL(iframe.src);
-        url.searchParams.set('autoplay', '1');
-        iframe.src = url.toString();
-      }
-      soundButton.textContent = 'Sound on';
-    });
-
-    const apiScript = document.createElement('script');
-    apiScript.src = 'https://www.youtube.com/iframe_api';
-    window.onYouTubeIframeAPIReady = () => {
-      player = new YT.Player(iframe, {
-        events: {
-          onReady(event) {
-            // Try sound first. Some browsers allow it after an ad click or prior site interaction.
-            event.target.unMute();
-            event.target.playVideo();
-          },
-          onAutoplayBlocked(event) {
-            if (!wantsSound && !triedMutedFallback) {
-              triedMutedFallback = true;
-              event.target.mute();
-              event.target.playVideo();
-            }
-            soundButton.textContent = 'Tap to play with sound';
-            soundButton.style.display = 'inline-block';
-          },
-          onStateChange(event) {
-            if (event.data === YT.PlayerState.PLAYING) {
-              soundButton.style.display = event.target.isMuted() ? 'inline-block' : 'none';
-            }
-          }
-        }
-      });
-    };
-    const url = new URL(iframe.src);
-    url.searchParams.set('enablejsapi', '1');
-    url.searchParams.set('playsinline', '1');
-    iframe.src = url.toString();
-    document.head.append(apiScript);
-  }
-}
 
 // YouTube embed renderer v2 - cache-proof filename

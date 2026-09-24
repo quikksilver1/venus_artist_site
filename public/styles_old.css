@@ -321,23 +321,6 @@ background:var(--card);
   font-size:clamp(34px,5vw,54px);
 }
 
-#kahit-bawal{
-  scroll-margin-top:90px;
-}
-
-.featured-sound-button{
-  display:inline-block;
-  margin:0 0 16px;
-  padding:12px 22px;
-  border:0;
-  border-radius:999px;
-  background:#ff006e;
-  color:#fff;
-  font:inherit;
-  font-weight:700;
-  cursor:pointer;
-}
-
 .spotify-feature-player iframe{
   display:block;
 }
