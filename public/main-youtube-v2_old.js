@@ -120,23 +120,17 @@ if (isKahitBawalAd) {
     let wantsSound = false;
     let triedMutedFallback = false;
     soundButton.addEventListener('click', () => {
+      wantsSound = true;
       if (player) {
-        if (player.isMuted() || player.getVolume() === 0) {
-          wantsSound = true;
-          player.unMute();
-          player.setVolume(100);
-          player.playVideo();
-          soundButton.textContent = 'Turn sound off';
-        } else {
-          player.mute();
-          soundButton.textContent = 'Turn sound on';
-        }
+        player.unMute();
+        player.playVideo();
       } else {
         // A direct tap can start the ordinary embed if the API has not loaded.
         const url = new URL(iframe.src);
         url.searchParams.set('autoplay', '1');
         iframe.src = url.toString();
       }
+      soundButton.textContent = 'Sound on';
     });
 
     const apiScript = document.createElement('script');
@@ -155,14 +149,12 @@ if (isKahitBawalAd) {
               event.target.mute();
               event.target.playVideo();
             }
-            soundButton.textContent = 'Turn sound on';
+            soundButton.textContent = 'Tap to play with sound';
             soundButton.style.display = 'inline-block';
           },
           onStateChange(event) {
             if (event.data === YT.PlayerState.PLAYING) {
-              soundButton.textContent = event.target.isMuted() || event.target.getVolume() === 0
-                ? 'Turn sound on' : 'Turn sound off';
-              soundButton.style.display = 'inline-block';
+              soundButton.style.display = event.target.isMuted() ? 'inline-block' : 'none';
             }
           }
         }
