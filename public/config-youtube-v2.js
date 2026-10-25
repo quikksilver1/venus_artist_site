@@ -1,15 +1,22 @@
 window.SITE_CONFIG = {
   spotifyEmbeds: [
   {
-    title: "Kahit Bawal",
-    src: "https://www.youtube.com/embed/LJq7zmhj9es?rel=0",
-    watchUrl: "https://www.youtube.com/watch?v=LJq7zmhj9es",
+    title: "Solo Una Fan",
+    src: "https://www.youtube.com/embed/W931aUJumCY?rel=0",
+    watchUrl: "https://www.youtube.com/watch?v=W931aUJumCY",
     height: 360,
     platform: "YouTube"
   }
 ],
 
   videos: [
+    {
+      id: "kahit-bawal",
+      title: "Kahit Bawal | Official Music Video",
+      youtubeId: "LJq7zmhj9es",
+      watchUrl: "https://www.youtube.com/watch?v=LJq7zmhj9es",
+      type: "youtube"
+    },
     {
       id: "san-antonio-austin",
       title: "San Antonio - Austin | Official Music Video",

@@ -153,7 +153,7 @@ Featured Video
 </p>
 
 <h2>
-Watch “Kahit Bawal” on YouTube
+Watch “Solo Una Fan” on YouTube
 </h2>
 
 </div>
@@ -448,14 +448,14 @@ Venus Niebres Taylor
 <script src="config-youtube-v2.js"></script>
 <script src="main-youtube-v2.js"></script>
 <script>
-// Ad links can use ?autoplay=1, ?play=kahit-bawal, ?video=kahit-bawal,
-// ?watch=kahit-bawal, or #kahit-bawal.
+// Featured-video ad links can use ?autoplay=1, ?play=solo-una-fan,
+// ?video=solo-una-fan, ?watch=solo-una-fan, or #solo-una-fan.
 (function () {
   const params = new URLSearchParams(window.location.search);
-  const truthy = (value) => /^(1|true|yes|kahit[-_ ]?bawal)$/i.test(value || '');
-  const fromAdLink = ['autoplay', 'play', 'video', 'watch', 'kahitbawal', 'kahit-bawal']
+  const truthy = (value) => /^(1|true|yes|solo[-_ ]?una[-_ ]?fan)$/i.test(value || '');
+  const fromAdLink = ['autoplay', 'play', 'video', 'watch', 'solounafan', 'solo-una-fan']
     .some((key) => truthy(params.get(key))) ||
-    /^#(?:kahit[-_]?bawal|watch-kahit-bawal)$/i.test(window.location.hash);
+    /^#(?:solo[-_]?una[-_]?fan|watch-solo-una-fan)$/i.test(window.location.hash);
   if (!fromAdLink) return;
 
   const player = document.querySelector('#spotify-grid .featured-song-player');
