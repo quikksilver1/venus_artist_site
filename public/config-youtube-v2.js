@@ -1,8 +1,16 @@
+// Ad links such as ?autoplay=solo-una-fan start the featured video muted.
+// Browsers generally block automatic playback with sound.
+const soloUnaFanParams = new URLSearchParams(window.location.search);
+const soloUnaFanAutoplay = ['autoplay', 'play', 'video', 'watch']
+  .some((key) => /^(1|true|yes|solo[-_ ]?una[-_ ]?fan)$/i.test(soloUnaFanParams.get(key) || ''));
+const soloUnaFanEmbed = 'https://www.youtube.com/embed/W931aUJumCY?rel=0' +
+  (soloUnaFanAutoplay ? '&autoplay=1&mute=1&playsinline=1' : '');
+
 window.SITE_CONFIG = {
   spotifyEmbeds: [
   {
     title: "Solo Una Fan",
-    src: "https://www.youtube.com/embed/W931aUJumCY?rel=0",
+    src: soloUnaFanEmbed,
     watchUrl: "https://www.youtube.com/watch?v=W931aUJumCY",
     height: 360,
     platform: "YouTube"

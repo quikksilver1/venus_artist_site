@@ -458,20 +458,29 @@ Venus Niebres Taylor
     /^#(?:solo[-_]?una[-_]?fan|watch-solo-una-fan)$/i.test(window.location.hash);
   if (!fromAdLink) return;
 
-  const player = document.querySelector('#spotify-grid .featured-song-player');
-  if (!player) return;
+  const grid = document.getElementById('spotify-grid');
+  if (!grid) return;
 
-  // Browser autoplay policies generally require muted playback until the viewer unmutes.
-  const playerUrl = new URL(player.getAttribute('src'), window.location.href);
-  playerUrl.searchParams.set('autoplay', '1');
-  playerUrl.searchParams.set('mute', '1');
-  playerUrl.searchParams.set('playsinline', '1');
-  player.setAttribute('loading', 'eager');
-  player.src = playerUrl.toString();
-
-  requestAnimationFrame(() => {
-    player.scrollIntoView({ behavior: 'instant', block: 'center' });
+  // The featured iframe may be created after this script runs. Watch for it.
+  const activatePlayer = () => {
+    const player = grid.querySelector('iframe.featured-song-player, iframe[src*="W931aUJumCY"], iframe');
+    if (!player) return false;
+    const url = new URL(player.getAttribute('src'), window.location.href);
+    if (!url.hostname.endsWith('youtube.com') && !url.hostname.endsWith('youtube-nocookie.com')) return false;
+    url.searchParams.set('autoplay', '1');
+    url.searchParams.set('mute', '1');
+    url.searchParams.set('playsinline', '1');
+    player.setAttribute('loading', 'eager');
+    if (player.src !== url.toString()) player.src = url.toString();
+    grid.scrollIntoView({ behavior: 'instant', block: 'center' });
+    return true;
+  };
+  if (activatePlayer()) return;
+  const observer = new MutationObserver(() => {
+    if (activatePlayer()) observer.disconnect();
   });
+  observer.observe(grid, { childList: true, subtree: true });
+  window.addEventListener('load', activatePlayer, { once: true });
 })();
 </script>
 
