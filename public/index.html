@@ -468,7 +468,6 @@ Venus Niebres Taylor
     const url = new URL(player.getAttribute('src'), window.location.href);
     if (!url.hostname.endsWith('youtube.com') && !url.hostname.endsWith('youtube-nocookie.com')) return false;
     url.searchParams.set('autoplay', '1');
-    url.searchParams.set('mute', '1');
     url.searchParams.set('playsinline', '1');
     player.setAttribute('loading', 'eager');
     if (player.src !== url.toString()) player.src = url.toString();
